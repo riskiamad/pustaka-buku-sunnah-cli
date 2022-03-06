@@ -20,6 +20,7 @@ func main() {
 	r.HandleFunc("/books/edit/{id}", handler.EditBookHandler).Methods("GET")
 	r.HandleFunc("/books/edit/{id}", handler.EditBookProcessHandler).Methods("POST")
 	r.HandleFunc("/books/delete/{id}", handler.DeleteBookHandler).Methods("GET")
+	http.Handle("/", r)
 
 	port := os.Getenv("PORT")
 	if port == "" {
