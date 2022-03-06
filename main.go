@@ -17,12 +17,7 @@ func main() {
 	r.HandleFunc("/books/edit/{id}", handler.EditBookHandler).Methods("GET")
 	r.HandleFunc("/books/edit/{id}", handler.EditBookProcessHandler).Methods("POST")
 	r.HandleFunc("/books/delete/{id}", handler.DeleteBookHandler).Methods("GET")
-	// srv := &http.Server{
-	// 	Handler: r,
-	// 	// Good practice: enforce timeouts for servers you create!
-	// 	WriteTimeout: 15 * time.Second,
-	// 	ReadTimeout:  15 * time.Second,
-	// }
-	log.Fatal(http.ListenAndServe(":8080", r))
+
+	log.Fatal(http.ListenAndServe(":80", r))
 
 }
