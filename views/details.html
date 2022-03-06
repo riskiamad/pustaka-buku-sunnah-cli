@@ -1,0 +1,17 @@
+{{ define "main" }}
+<div class="container">
+    <h3 class="text-light"><a href="/" class="badge bg-secondary text-decoration-none text-reset">Back to List of Books</a></h3>
+    <h4> Details of {{.data.title}} </h4>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Price : Rp. {{.data.price}}</h5>
+            <p class="card-text">Description : {{.data.description}}</p>
+            <p class="card-text">Rating : {{.data.rating}} / 10</p>
+            <p class="card-text">Discount : {{.data.discount}} %</p>
+            <a href="/books/edit/{{.id}}" class="btn btn-primary">Edit</a>
+            <a href="/books/delete/{{.id}}" class="btn btn-primary">Delete</a>
+        </div>
+    </div>
+
+</div>
+{{end}}
