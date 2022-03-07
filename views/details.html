@@ -4,8 +4,9 @@
     <h4> Details of {{.data.title}} </h4>
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">Price : Rp. {{.data.price}}</h5>
-            <p class="card-text">Description : {{.data.description}}</p>
+            <h5 class="card-title ">Rp. {{.data.discountPrice}}</h5>
+            <p class="card-text "><s class="text-danger">Rp. {{.data.price}}</s> <sup><span class="badge bg-warning text-dark">{{.data.discount}}% off</span></sup>
+            </p>
             <p class="card-text">Rating : {{.data.rating}} / 10</p>
             <p class="card-text">Discount : {{.data.discount}} %</p>
             <a href="/books/edit/{{.data.id}}" class="btn btn-primary">Edit</a>

@@ -15,7 +15,7 @@
                 </div>
                 <div class="card-body ">
                     <h5 class="card-title ">Rp. {{.discountPrice}}</h5>
-                    <p class="card-text "><s class="text-danger">Rp. {{.price}}</s> <strong>{{.discount}}% off</strong></p>
+                    <p class="card-text "><s class="text-danger">Rp. {{.price}}</s> <span class="badge bg-warning text-dark">{{.discount}}% off</span></p>
                     <p class="card-text ">{{.description}}</p>
                     <p class="card-text ">{{.rating}} / 10</p>
                     <a href="/books/edit/{{.id}} " class="btn btn-primary ">Edit</a>
