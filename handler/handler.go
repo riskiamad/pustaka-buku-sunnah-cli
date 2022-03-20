@@ -13,7 +13,7 @@ import (
 )
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
-	resp, err := http.Get("https://my1stapi.herokuapp.com/v1/books/")
+	resp, err := http.Get("https://api.iamrisk.my.id/v1/books/")
 	if err != nil {
 		log.Fatalln(err)
 	}
@@ -46,7 +46,7 @@ func AddBookHandler(w http.ResponseWriter, r *http.Request) {
 
 func BookDetailsHandler(w http.ResponseWriter, r *http.Request) {
 	id := mux.Vars(r)["id"]
-	url := "https://my1stapi.herokuapp.com/v1/books/" + id
+	url := "https://api.iamrisk.my.id/v1/books/" + id
 	resp, err := http.Get(url)
 	if err != nil {
 		log.Fatalln(err)
@@ -69,7 +69,7 @@ func BookDetailsHandler(w http.ResponseWriter, r *http.Request) {
 
 func EditBookHandler(w http.ResponseWriter, r *http.Request) {
 	id := mux.Vars(r)["id"]
-	url := "https://my1stapi.herokuapp.com/v1/books/" + id
+	url := "https://api.iamrisk.my.id/v1/books/" + id
 	resp, err := http.Get(url)
 	if err != nil {
 		log.Fatalln(err)
@@ -107,7 +107,7 @@ func AddBookProcessHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Fatalln(err)
 	}
-	resp, err := http.Post("https://my1stapi.herokuapp.com/v1/books/", "application/json; charset=utf-8", bytes.NewBuffer(jsonReq))
+	resp, err := http.Post("https://api.iamrisk.my.id/v1/books/", "application/json; charset=utf-8", bytes.NewBuffer(jsonReq))
 	if err != nil {
 		log.Fatalln(err)
 	}
@@ -119,7 +119,7 @@ func AddBookProcessHandler(w http.ResponseWriter, r *http.Request) {
 
 func EditBookProcessHandler(w http.ResponseWriter, r *http.Request) {
 	id := mux.Vars(r)["id"]
-	url := "https://my1stapi.herokuapp.com/v1/books/" + id
+	url := "https://api.iamrisk.my.id/v1/books/" + id
 	title := r.FormValue("title")
 	description := r.FormValue("description")
 	rating, _ := strconv.Atoi(r.FormValue("rating"))
@@ -152,7 +152,7 @@ func EditBookProcessHandler(w http.ResponseWriter, r *http.Request) {
 
 func DeleteBookHandler(w http.ResponseWriter, r *http.Request) {
 	id := mux.Vars(r)["id"]
-	url := "https://my1stapi.herokuapp.com/v1/books/" + id
+	url := "https://api.iamrisk.my.id/v1/books/" + id
 	req, err := http.NewRequest(http.MethodDelete, url, nil)
 	if err != nil {
 		log.Fatalln(err)
