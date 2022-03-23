@@ -10,4 +10,7 @@ require (
 	gopkg.in/paytm/grace.v1 v1.0.0-20150417064046-edb50d497280
 )
 
-require gopkg.in/tylerb/graceful.v1 v1.2.15 // indirect
+require (
+	golang.org/x/net v0.0.0-20220225172249-27dd8689420f // indirect
+	gopkg.in/tylerb/graceful.v1 v1.2.15 // indirect
+)

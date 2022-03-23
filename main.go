@@ -1,6 +1,7 @@
 package main
 
 import (
+	"embed"
 	"log"
 	"net/http"
 	"os"
@@ -10,6 +11,9 @@ import (
 	"github.com/gorilla/mux"
 	"gopkg.in/paytm/grace.v1"
 )
+
+//go:embed views/*.html
+var views embed.FS
 
 func main() {
 	r := mux.NewRouter()
@@ -21,6 +25,7 @@ func main() {
 	r.HandleFunc("/books/edit/{id}", handler.EditBookProcessHandler).Methods("POST")
 	r.HandleFunc("/books/delete/{id}", handler.DeleteBookHandler).Methods("GET")
 	http.Handle("/", r)
+	handler.Views = views
 
 	port := os.Getenv("PORT")
 	if port == "" {

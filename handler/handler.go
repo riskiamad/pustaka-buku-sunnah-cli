@@ -2,15 +2,19 @@ package handler
 
 import (
 	"bytes"
+	"embed"
 	"encoding/json"
 	"html/template"
 	"log"
+
 	"net/http"
 	"pustaka-buku-sunnah-cli/entity"
 	"strconv"
 
 	"github.com/gorilla/mux"
 )
+
+var Views embed.FS
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	resp, err := http.Get("https://api.iamrisk.my.id/v1/books/")
@@ -22,22 +26,16 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 
 	var result map[string]interface{}
 	json.NewDecoder(resp.Body).Decode(&result)
-	tmpl, err := template.New("").ParseFiles("views/index.html", "views/base.html")
-	if err != nil {
-		log.Fatalln(err)
-	}
-	err = tmpl.ExecuteTemplate(w, "base", result)
+	tmpl := template.Must(template.ParseFS(Views, "views/*.html"))
+	err = tmpl.ExecuteTemplate(w, "index", result)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 }
 
 func AddBookHandler(w http.ResponseWriter, r *http.Request) {
-	tmpl, err := template.New("").ParseFiles("views/add.html", "views/base.html")
-	if err != nil {
-		log.Fatalln(err)
-	}
-	err = tmpl.ExecuteTemplate(w, "base", nil)
+	tmpl := template.Must(template.ParseFS(Views, "views/*.html"))
+	err := tmpl.ExecuteTemplate(w, "add", nil)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
@@ -56,11 +54,8 @@ func BookDetailsHandler(w http.ResponseWriter, r *http.Request) {
 
 	var result map[string]interface{}
 	json.NewDecoder(resp.Body).Decode(&result)
-	tmpl, err := template.New("").ParseFiles("views/details.html", "views/base.html")
-	if err != nil {
-		log.Fatalln(err)
-	}
-	err = tmpl.ExecuteTemplate(w, "base", result)
+	tmpl := template.Must(template.ParseFS(Views, "views/*.html"))
+	err = tmpl.ExecuteTemplate(w, "details", result)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
@@ -79,11 +74,8 @@ func EditBookHandler(w http.ResponseWriter, r *http.Request) {
 
 	var result map[string]interface{}
 	json.NewDecoder(resp.Body).Decode(&result)
-	tmpl, err := template.New("").ParseFiles("views/update.html", "views/base.html")
-	if err != nil {
-		log.Fatalln(err)
-	}
-	err = tmpl.ExecuteTemplate(w, "base", result)
+	tmpl := template.Must(template.ParseFS(Views, "views/*.html"))
+	err = tmpl.ExecuteTemplate(w, "update", result)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
